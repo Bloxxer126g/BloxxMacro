@@ -33,5 +33,5 @@ class Api():
             return f"({clicked_coords[0][0]},{clicked_coords[0][1]})"
         return None
 
-webview.create_window("BloxxMacro", "index.html", js_api=Api(), width=600, height=500)
+webview.create_window("BloxxMacro", "https://macro.bloxxer.dev/app/index.html", js_api=Api(), width=600, height=500)
 webview.start()
