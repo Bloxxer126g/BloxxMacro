@@ -1,19 +1,37 @@
 import webview
 import pyautogui
+from pynput import mouse 
 
 class Api():
-  def ExecuteActions(self, actions):
-    for item in actions:
-        if item[0] == "(":
-            item = item.split(",")
-            loc1 = item[0].split("(")[1]
-            loc2 = item[1].split(")")[0]
-            loc1=int(loc1)
-            loc2=int(loc2)
-            pyautogui.moveTo(loc1,loc2)
-            pyautogui.click(loc1,loc2)
-        else:
-           pyautogui.typewrite(item)
+    def ExecuteActions(self, actions):
+        pyautogui.alert("Running Macro", "BloxxMacro")
+        for item in actions:
+            if item.startswith("("):
+                try:
+                    coords = item.replace("(", "").replace(")", "").split(",")
+                    loc1 = int(coords[0].strip())
+                    loc2 = int(coords[1].strip())
+                    pyautogui.moveTo(loc1, loc2, 1, pyautogui.easeOutQuad)
+                    pyautogui.click(loc1, loc2)
+                except Exception as e:
+                    print(f"Error parsing coordinates: {e}")
+            else:
+                pyautogui.press(item)
 
-webview.create_window("BloxxMacro", "https://macro.bloxxer.dev/app", js_api=Api())
+    def GetClickLocation(self):
+        clicked_coords = []
+        
+        def on_click(x, y, button, pressed):
+            if pressed:
+                clicked_coords.append((int(x), int(y)))
+                return False
+
+        with mouse.Listener(on_click=on_click) as listener:
+            listener.join()
+            
+        if clicked_coords:
+            return f"({clicked_coords[0][0]},{clicked_coords[0][1]})"
+        return None
+
+webview.create_window("BloxxMacro", "index.html", js_api=Api(), width=600, height=500)
 webview.start()

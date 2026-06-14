@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://macro.bloxxer.dev/app/styles.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <script src="https://macro.bloxxer.dev/app/main.js" defer></script>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet"> 
-    <title>Woah! You're not meant to be here!</title>
+    <title>BloxxMacro</title>
 </head>
 <body>
     <h1 id="Header" class="Text">BloxxMacro</h1>
-    <div id="CenterContent">
-        <div class="Action Text">Click (x:25, y:200)</div>
-    </div>
+    
+    <div id="CenterContent"></div>
+    
     <div id="Dock">
+        <button class="Button Text" id="RecordClickBtn">+ Record Click</button>
+        <button class="Button Text" id="RecordKeyBtn">+ Record Key</button>
         <button class="Button Text" id="RunButton">Run Program</button>
     </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
