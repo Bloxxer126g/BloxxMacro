@@ -4,7 +4,7 @@ import pyautogui
 class Api():
   def ExecuteActions(self, actions):
     for item in actions:
-        if item[1] == "(":
+        if item[0] == "(":
             item = item.split(",")
             print(item)
         else:
