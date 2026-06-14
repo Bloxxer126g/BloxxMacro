@@ -1,9 +1,16 @@
 import webview
+import pyautogui
 
 class Api():
   def ExecuteActions(self, actions):
     for item in actions:
-      print(item)
+        if item[1] == "(":
+            item = item.split(",")
+            print(item)
+        else:
+           pyautogui.typewrite(item)
+
+      
       
 
 
